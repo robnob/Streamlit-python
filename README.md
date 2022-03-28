@@ -31,6 +31,7 @@ st.markdown("This application is a Streamlit dashboard that can be used"
 An emoji of NYC has been added in the markdown, because it is capable of reading emojis.
 
 ## Creating a function
+@st.cache(persist = True) This is so that the data persists in cache and only when the original data has changed the file would be re-read
 df load_data(nrows):
 
   data = pd.read_csv(DATA_URL, nrows = nrows, parse_dates=[['CRASH_DATE','CRASH_TIME']])
@@ -44,4 +45,9 @@ df load_data(nrows):
   data.rename(columns={'crash_date_crash_time', 'date/time', inplace=True})
   
   return data
+  
+  ## Showing the data in a table
+  st.subheader('Raw Data')
+  
+  st.write(data)
   
