@@ -47,7 +47,19 @@ df load_data(nrows):
   return data
   
   ## Showing the data in a table
-  st.subheader('Raw Data')
+  if st.checkbox("Show Raw Data", False):
   
-  st.write(data)
+  -st.subheader('Raw Data')
   
+  -st.write(data)
+  
+  ## Visualize data on a map
+  st.header("Where are the most people injured in NYC?")
+  
+  injured_people=st.slider("Number of people injured in vehicle collissions", 0,19)
+  
+  st.map(data.query("injured_persons >= @injured_people")["latitude", "longitude"]].dropna(how="any"))
+ 
+## Filtering Data and Interactive Maps
+
+
