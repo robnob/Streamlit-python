@@ -61,5 +61,12 @@ df load_data(nrows):
   st.map(data.query("injured_persons >= @injured_people")["latitude", "longitude"]].dropna(how="any"))
  
 ## Filtering Data and Interactive Maps
+st.header("How many collisions occurred during a given time of day ?")
 
+hour = st.selectbox("Hour to look at", range(0,24),1)   *Differences of 1 hour
 
+or
+
+hour = st.sidebar.slider("Hour to look at", 0 , 23)
+
+data = data[data['date/time'].dt.hour == hour]   *In this case is really filtering the Raw Data
