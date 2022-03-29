@@ -9,7 +9,7 @@
 3. **In the terminal:**
 - streamlit run app.py
 - it would open a navigator with the web page title
-4. Add an exlamation point to "Hola Mundo!" and save the file, in the browser selects "Alwys rerun" so that any change saved in the file is shown on it (live coding). In this way it is going to use the deltas and not to re-charge the whole page again.
+4. Add an exlamation point to "Hola Mundo!" and save the file, in the browser selects "Always rerun" so that any change saved in the file is shown on it (live coding). In this way it is going to use the deltas and not to re-charge the whole page again.
 5. **Adding markdowns:**
 - st.markdown("## My first streamlit dashboard!)
 
@@ -70,3 +70,29 @@ or
 hour = st.sidebar.slider("Hour to look at", 0 , 23)
 
 data = data[data['date/time'].dt.hour == hour]   *In this case is really filtering the Raw Data
+
+## Plot filtered data on a 3D Interactive Map
+st.markdown("Vehicle collision between %i:00 and %i:00" % (hour, (hour+1) % 24)
+
+midpoint = (np.average(data["latitude"]), np.average(data["longitude"]))
+
+import pydeck as pdk
+
+st.write(pdk.Deck(
+
+  map_style ="mapbox://styles/mapbox/light-v9"
+  
+  initial_view_state={
+  
+    "latitude": midpoint[0],
+    
+    "longitude":midpoint[1],
+    
+    "zoom": 11,
+    
+    "pitch":50,
+  
+  },
+  
+))
+
