@@ -80,7 +80,7 @@ import pydeck as pdk
 
 st.write(pdk.Deck(
 
-  map_style ="mapbox://styles/mapbox/light-v9"
+  map_style ="mapbox://styles/mapbox/light-v9",
   
   initial_view_state={
   
@@ -93,6 +93,33 @@ st.write(pdk.Deck(
     "pitch":50,
   
   },
+  layers=[
+  
+    pdk.Layer(
+    
+    "HexagonLayer",
+    
+    data = data[['date/time','latitude', 'longitude']],
+    
+    get_position=['longitude', 'latitude'],
+    
+    radius = 100,
+    
+    extruded = True,
+    
+    pickable = True,
+    
+    elevation_scale = 4,
+    
+    elevation_range[0,1000],
+       
+    ),
+    
+  ],
   
 ))
+
+## Charts and histograms
+
+
 
